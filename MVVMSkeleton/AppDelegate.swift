@@ -16,6 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.backgroundColor = .white
+        window?.rootViewController = skeletonRootViewController();
+        window?.makeKeyAndVisible()
+
         return true
     }
 
@@ -44,3 +49,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension AppDelegate {
+
+    // skeletonRootViewController should be in a coordinator
+    func skeletonRootViewController() -> UIViewController {
+        let rootViewController = RootViewController();
+        let navigationController = UINavigationController(rootViewController: rootViewController)
+        navigationController.navigationBar.isOpaque = true
+        return navigationController
+    }
+
+}
