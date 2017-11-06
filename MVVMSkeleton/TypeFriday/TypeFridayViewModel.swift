@@ -8,13 +8,20 @@
 
 import Foundation
 
-// TypeFridayUpdatable is the protocol that the controller should conform to
-// It is to receive the changes of the view model / model
+// cf. https://swift.org/documentation/api-design-guidelines/#strive-for-fluent-usage for naming convention
+// Examples from standard library:
+// - Equatable protocol https://developer.apple.com/documentation/swift/equatable (https://github.com/apple/swift/blob/a05cd35a7f8e3cc70e0666bc34b5056a543eafd4/stdlib/public/core/Equatable.swift#L156)
+// - Codable protocol https://developer.apple.com/documentation/swift/codable (https://github.com/apple/swift/blob/2844583d7f9d51ce5c4da7776e19f0aab6f2e3f6/stdlib/public/core/Codable.swift#L43)
+// - Collection protocol https://developer.apple.com/documentation/swift/collection (https://github.com/apple/swift/blob/26cdef13a70dbfc3144a45632695eaf967093863/stdlib/public/core/Collection.swift#L348)
+
+// `TypeFridayUpdatable` a type that can be updated by `TypeFridayViewModel`
+// It is the protocol that the controller should conform to,
+// to be updated by the view model / model
 protocol TypeFridayUpdatable: NSObjectProtocol {
     func update(_ previousState: TypeFridayState, _ newState: TypeFridayState)
 }
 
-// TypeFridayState is the whole/final protocol that the state embed in the view model should conform to
+// TypeFridayState a type that stores the `TypeFridayViewController` state
 // The state has to be immutable: there is no method to set anything
 typealias TypeFridayState = TypeFridayViewState & NavBarState
 
